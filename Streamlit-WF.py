@@ -43,7 +43,7 @@ __, col2, __ = st.columns((0.5, 1, 0.5), gap = "small", vertical_alignment="cent
 with col2:
     values = [6, 0, 1, 2, 3, 4, 5] #our week starts on Sunday (6)
     labels = ['Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday']   
-    selection = st.select_slider('Choose a weekday',values, value=today, format_func=(lambda x:labels[x]))
+    selection = st.select_slider('Pick a weekday!',values, value=today, format_func=(lambda x:labels[x]))
 
 if( selection == 6):
     selection = -1
