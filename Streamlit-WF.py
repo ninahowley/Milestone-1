@@ -39,7 +39,7 @@ locationID = mealDict[location]["LocationID"]
 today = date.today().weekday()
 d = date.today()
 #test cases for if it is Sunday
- d = date(2025, 3, 30)
+d = date(2025, 3, 30)
 today = 6
 #Changes Sunday's value to -1 because Wellesley Fresh starts on Sunday's
 if(today == 6):
