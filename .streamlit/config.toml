@@ -1,0 +1,8 @@
+[server]
+runOnSave = true
+
+[theme]
+primaryColor = "#70c2b4"
+backgroundColor = "#f5fffd"
+secondaryBackgroundColor= "#bae3db"
+font="monospace"
