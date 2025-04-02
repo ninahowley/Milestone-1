@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 from datetime import date, datetime, timedelta
@@ -37,16 +38,19 @@ mealID = mealDict[location][meal]
 locationID = mealDict[location]["LocationID"]
 today = date.today().weekday()
 d = date.today()
-
+#test cases for if it is Sunday
+# d = date(2025, 3, 31)
+# today = 6
+#Changes Sunday's value to -1 because Wellesley Fresh starts on Sunday's
+if(today == 6):
+    today = -1
 
 __, col2, __ = st.columns((0.5, 1, 0.5), gap = "small", vertical_alignment="center")
 with col2:
-    values = [6, 0, 1, 2, 3, 4, 5] #our week starts on Sunday (6)
+    values = [-1, 0, 1, 2, 3, 4, 5] #our week starts on Sunday which is index -1 in lables
     labels = ['Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday']   
-    selection = st.select_slider('Pick a weekday!',values, value=today, format_func=(lambda x:labels[x]))
+    selection = st.select_slider('Choose a range',values, value=today, format_func=(lambda x:labels[x]))
 
-if( selection == 6):
-    selection = -1
 d = d + timedelta(days=selection - today)
 st.write("Selected Date: ", d)
 
