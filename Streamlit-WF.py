@@ -9,15 +9,21 @@ mealDict = {"Bates":{"Breakfast":145,"Lunch":146,"Dinner":311,"LocationID":95},"
 def getMenu(locationID, mealID, date):
     base_url = "https://dish.avifoodsystems.com/api/menu-items/week"
     params = {"date":d,"locationID":locationID,"mealID":mealID}
-    response = requests.get(base_url,params=params)
+    try:
+        response = requests.get(base_url,params=params)
+    except:
+        return pd.DataFrame()
     data = response.json()
 
     df = pd.DataFrame(data)
-    df['date'] = df['date'].apply(lambda x: x.strip("T00:00:00"))
-    df = df[df['date']== str(date)]
-    df2 = pd.DataFrame({"name":df["name"],"station":df["categoryName"],"description":df["description"]}, )
-    st.dataframe(df2, hide_index=True)
-    return df2
+    try:
+        df['date'] = df['date'].apply(lambda x: x.strip("T00:00:00"))
+        df = df[df['date']== str(date)]
+        df2 = pd.DataFrame({"name":df["name"],"station":df["categoryName"],"description":df["description"]}, )
+        st.dataframe(df2, hide_index=True)
+        return df2
+    except:
+        return st.toast("We're sorry, but something went wrong.")
 
 st.set_page_config(page_title="WF Streamlit", layout="wide")
 
