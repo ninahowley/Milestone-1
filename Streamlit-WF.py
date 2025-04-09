@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from datetime import date, datetime, timedelta
@@ -17,7 +16,7 @@ def getMenu(locationID, mealID, date):
 
     df = pd.DataFrame(data)
     try:
-        df['date'] = df['date'].apply(lambda x: x.strip("T00:00:00"))
+        df['date'] = df['date'].apply(lambda x: x.split('T')[0])
         df = df[df['date']== str(date)]
         df2 = pd.DataFrame({"name":df["name"],"station":df["categoryName"],"description":df["description"]}, )
         st.dataframe(df2, hide_index=True)
